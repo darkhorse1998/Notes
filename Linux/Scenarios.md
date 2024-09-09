@@ -11,5 +11,6 @@
 7. Examine incoming request and check if it can be isolated to a particular request URL with certain headers.
 8. Any downstream APIs or DBs being called and responding slowly.
 9. It could be a DDoS (Distributed Denial of Service) attack. Check if there a set of IPs continuously hammering the server.
-10. If any reverse proxy is being used like nginx, try restarting them. Proxy or forward proxy sits in front of the client. A forward proxy can mask the client's IP address and location, and block access to specific websites. Reverse proxy sits ifront of the server. A reverse proxy forwards requests to other servers and returns the results to the client. A reverse proxy can act as a layer of abstraction between the client and the server. ![image](https://github.com/user-attachments/assets/d9fc15e4-b2db-481d-a79e-f8de60d3c24a)
+10. If any reverse proxy is being used like nginx, try restarting them. Proxy or forward proxy sits in front of the client. A forward proxy can mask the client's IP address and location, and block access to specific websites. Reverse proxy sits ifront of the server. A reverse proxy forwards requests to other servers and returns the results to the client. A reverse proxy can act as a layer of abstraction between the client and the server. \
+![image](https://github.com/user-attachments/assets/d9fc15e4-b2db-481d-a79e-f8de60d3c24a)
 
