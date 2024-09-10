@@ -26,3 +26,4 @@ behavior:
     scaleUp:
       stabilizationWindowSeconds: 0
 ```
+![image](https://github.com/user-attachments/assets/3880bcff-9a5a-408a-beab-145e43c13840)
