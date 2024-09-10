@@ -7,7 +7,7 @@
 3. Check free memory by `free -m`. It gives information about total , used and available space of physical memory and swap memory. Swap memory, also known as swap space, is a section of a computer's hard disk or SSD that the operating system (OS) uses to store inactive data from Random Access Memory (RAM). This allows the OS to run even when RAM is full, preventing system slowdowns or crashes. But, swap memory can be slower than accessing data directly from physical memory.
 4. Check the CPU% & Memory% by using `htop` or `top`. **htop** is interactive.
 5. Check disk I/O performance using `iotop`
-6. Check _/var/log/messages_ or _/var/log/syslog_ and application server for logs about STDERR or STDOUT
+6. Check _/var/log/messages_ or _/var/log/syslog_ and application server for logs about STDERR or STDOUT. We can also try to find the response times from the logs.
 7. Examine incoming request and check if it can be isolated to a particular request URL with certain headers.
 8. Any downstream APIs or DBs being called and responding slowly.
 9. It could be a DDoS (Distributed Denial of Service) attack. Check if there a set of IPs continuously hammering the server.
