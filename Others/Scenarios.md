@@ -7,11 +7,11 @@ If there is a certain funcionality or business logic within a monolithic applica
 
 ### Dividing the Application into Layers
 
-Presentation layer – elements that manage HTTP requests and use either a (REST) ​​API or an HTML-based web interface. In an application with a complex user interface, the presentation layer is frequently a significant amount of code. \
+Presentation layer – elements that manage HTTP requests and use either a (REST) ​​API or an HTML-based web interface. In an application with a complex user interface, the presentation layer is frequently a significant amount of code.
 
-Business logic layer – elements that are the nucleus of the application and apply business rules. \
+Business logic layer – elements that are the nucleus of the application and apply business rules.
 
-Data access layer – elements that access infrastructure parts such as databases and message brokers. \
+Data access layer – elements that access infrastructure parts such as databases and message brokers.
 
 In this strategy, the presentation layer is the most typical candidate that can be transformed into a microservice. Such decoupling of the monolith has two main advantages. It allows you to create, deploy, and scale front- and back-end functionality independently from each other. Besides, it also allows the presentation-layer developers to quickly iterate the user interface and smoothly carry out microservices testing.
 
