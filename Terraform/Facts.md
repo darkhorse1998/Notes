@@ -21,3 +21,4 @@ locals {
 ```
 
 3. Differece between terafform variables & locals:
+![image](https://github.com/user-attachments/assets/80034d5b-6e60-4ba9-9a41-7c7f6727c6c2)
