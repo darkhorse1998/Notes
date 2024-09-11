@@ -61,3 +61,12 @@ lifecycle:
 ```
 
 > Source: [Graceful Shutdown](https://learnk8s.io/graceful-shutdown)
+
+## Liveness & Readiness
+
+Readiness probe: Tells Kubernetes whether your app is ready to accept traffic or not. If not, Kubernetes won't send any traffic to it. \
+Liveness probe: Tells Kubernetes whether your app is alive or not. If not, the pod will be restarted.
+
+For liveness probe it is important to set the `initialDelaySeconds` so that the application gets time to be ready and the liveness probes is successful. Else the liveness probe will continuously fail and the pod will get restarted again & again.
+
+> Source: [Liveness & Readiness](https://www.youtube.com/watch?v=mxEvAPQRwhw)
