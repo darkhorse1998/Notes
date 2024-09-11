@@ -18,6 +18,6 @@ In this strategy, the presentation layer is the most typical candidate that can 
 > Source: [Monolith to Microservices](https://sigma.software/about/media/migrating-monolith-microservices-step-step-guide)
 
 ## Deployment Strategies
-
+![image](https://github.com/user-attachments/assets/66c2b558-8ccd-49dc-8694-ee3c09805744)
 
 > Source: [Deployment Strategies](https://www.youtube.com/watch?v=OKM0tTYxQbk&t=173s)
