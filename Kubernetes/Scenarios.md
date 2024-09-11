@@ -16,6 +16,9 @@ Configuration wise self managed cluster is also fine because it would be an one 
 
 ## Autoscaling in Kubernetes
 
+How are replicas decided by HPA? \
+desiredReplicas = ceil[currentReplicas * ( currentMetricValue / desiredMetricValue )]
+
 Usually we have seen HPA autoscaling pods based on CPU & memory utilizations. It could be defined as a percentage, where it will calculate the desired metrics based on the resource requests. It could also be defined in values. However, the scaling could also be based on custom metrics like number of HTTP requests per second, latency, queue depth etc. This can be achieved by leveraing a Custom Metric API server that collects these metrics so that the HPA could use these metrics and scale accordingly. \
 During scaling we often observe that the pods might be scaling up and down with some delays. This is because Kubernetes autoscaling has intentional delays by default, so that the system doesn't scale up or down too quickly due to spurious load. However, we can control this through **scaleUp** or **scaleDown** beaviors. Following is the configuration and the result:
 
@@ -30,4 +33,31 @@ behavior:
 
 > Source: [Autoscaling with Custom Metrics](https://blog.px.dev/autoscaling-custom-k8s-metric/)
 
-## 
+## Graceful Shutdown
+
+These are critical in cases where you might have a long running processes. Possible issues could be:
+
+1. The pod could be performing a long running porcess when it gets stopped due to pod termination. This long running process would need to be started again from scratch, leading to waste of resources & time.
+2. The pod deletion or termination process and the endpoints update process are started parallely. It could be possible that the pod gets deleted first before the endpoints can be updated in verious kubernetes components like ingress, CoreDNS, kubeproxy etc. In this case, request would continue to come in an dreceive a 404 as the pod won't be there.
+
+How can they be tackled to some extent?
+To allow long running processes to complete, the `terminationGracePeriodSeconds` can be extended. This will ensure that even after receiving the **SIGTERM** signal and pod being in **terminating** state, the process still get the time to complete. Some new requests might come in if there are some delays in the endpoint update in the kubernetes components. To prevent this, one can configure a `preStop` hook to run when the pod receives a **SIGTERM** signal, which can run some scripts or commands to set some environment variables, based on which requests are accepted or denied by the application. This should take care of #1 to some extent.
+
+```yaml
+lifecycle:
+  preStop:
+    exec:
+      command: ["<run-script>"]
+      terminationGracePeriodSeconds: <required-time>
+```
+
+#2 can be solved through a similar manner. In case there are no process running after receiving the **SIGTERM** signal, the pod might terminate well before the default grace period or before the endpoints could be updated in the Kubernetes components. A delay can be introduced through the `preStop` hook to ensure that the pod don't terminate before the endpoints are updated.
+
+```yaml
+lifecycle:
+  preStop:
+    exec:
+      command: ["sleep", "15"]
+```
+
+> Source: [Graceful Shutdown](https://learnk8s.io/graceful-shutdown)
