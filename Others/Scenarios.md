@@ -16,3 +16,8 @@ Data access layer – elements that access infrastructure parts such as database
 In this strategy, the presentation layer is the most typical candidate that can be transformed into a microservice. Such decoupling of the monolith has two main advantages. It allows you to create, deploy, and scale front- and back-end functionality independently from each other. Besides, it also allows the presentation-layer developers to quickly iterate the user interface and smoothly carry out microservices testing.
 
 > Source: [Monolith to Microservices](https://sigma.software/about/media/migrating-monolith-microservices-step-step-guide)
+
+## Deployment Strategies
+
+
+> Source: [Deployment Strategies](https://www.youtube.com/watch?v=OKM0tTYxQbk&t=173s)
