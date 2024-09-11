@@ -17,7 +17,7 @@ Configuration wise self managed cluster is also fine because it would be an one 
 ## Autoscaling in Kubernetes
 
 Usually we have seen HPA autoscaling pods based on CPU & memory utilizations. It could be defined as a percentage, where it will calculate the desired metrics based on the resource requests. It could also be defined in values. However, the scaling could also be based on custom metrics like number of HTTP requests per second, latency, queue depth etc. This can be achieved by leveraing a Custom Metric API server that collects these metrics so that the HPA could use these metrics and scale accordingly. \
-During scaling we often observe that the pods might be scaling up and down with some delays. This is because Kubernetes autoscaling has intentional delays by default, so that the system doesn't scale up or down too quickly due to spurious load. However, we can control this through **scaleUp** or **scaleDown** beaviors. Following is the configuration and the result: \
+During scaling we often observe that the pods might be scaling up and down with some delays. This is because Kubernetes autoscaling has intentional delays by default, so that the system doesn't scale up or down too quickly due to spurious load. However, we can control this through **scaleUp** or **scaleDown** beaviors. Following is the configuration and the result:
 
 ```yaml
 behavior:
@@ -27,3 +27,7 @@ behavior:
       stabilizationWindowSeconds: 0
 ```
 ![image](https://github.com/user-attachments/assets/3880bcff-9a5a-408a-beab-145e43c13840)
+
+> Source: [Autoscaling with Custom Metrics](https://blog.px.dev/autoscaling-custom-k8s-metric/)
+
+## 
