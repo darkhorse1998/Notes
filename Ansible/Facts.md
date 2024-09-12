@@ -44,7 +44,7 @@ Example: `ansible-galaxy role init apache2`
 26. To publish roles in ansible galaxy you would need an API token which can be found in the Ansible Galaxy dashboard through **Collections** tab. Moreover, you would need to to keep the roles related folders & details in a separate GitHub repository.
 27. To publish roles run `ansible-galaxy import <github-username> <github-repository-with-role> --token <API-token>`
 28. Ansible uses Jinja2 templating.
-29. Ansible Collections are a bundle of roles, modules, playbooks that can be used to interact with third parties like AWS, Azure, GCP etc.
+29. Ansible Collections are a bundle of roles, modules, playbooks that can be used to interact with third parties like AWS, Azure, GCP etc. through APIs.
 30. Precedence order of variables - [Source](https://medium.com/trendfingers/variable-precedence-in-ansible-2a3dba7766ab):
   i. extra-vars from command-line (top)
   ii. block variables and task variables
@@ -56,4 +56,18 @@ Example: `ansible-galaxy role init apache2`
   viii. invetory group_vars & host_vars in /inventory
   ix. inventory variables in inventory.ini
   x. role defaults (bottom)
-31. 
+31. Ansible has a built-in vault integration. To use it, you have to create a pass first. \
+Example:
+
+```shell
+openssl rand -base64 2048 > vault.pass
+ansible-vault create group_vars/all/pass.yml --vault-password-file vault.pass
+```
+
+The above might cause issue with Windows due to **vault.pass** acting as an executable. In that case, just change the name to **.pass** and save it in the home directory. \
+Example:
+
+```shell
+openssl rand -base64 2048 > ~/.pass
+ansible-vault create group_vars/all/pass.yml --vault-password-file ~/.pass
+```
