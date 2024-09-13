@@ -71,3 +71,52 @@ Example:
 openssl rand -base64 2048 > ~/.pass
 ansible-vault create group_vars/all/pass.yml --vault-password-file ~/.pass
 ```
+
+32. You can use ansible to loop and create multiple resources or perform multiple repeated tasks. Be careful, as Ansible is **idempotent** and if you don't differentiate between the resources it won't create the resources as expected. \
+For example, the following task will create only 2 ec2 instances and not 3, as for the 2nd and 3rd ec2 instances, all paramaters are same and hence ansible will leave it as it is:
+
+```yaml
+- name: Create EC2 instances
+    amazon.aws.ec2_instance:
+      name: "demo-ec2"
+      key_name: "demo-key"
+      instance_type: t2.micro
+      security_group: default
+      region: us-east-1
+      aws_access_key: "{{ec2_access_key}}" 
+      aws_secret_key: "{{ec2_secret_key}}"    
+      network:
+        assign_public_ip: true
+      image_id: "{{ item }}"
+      tags:
+        environment: "{{ item.name }}"
+    loop:
+      - image: "ami-0e1d06225679bc1c5"
+      - image: "ami-0f58b397bc5c1f2e8"
+      - image: "ami-0f58b397bc5c1f2e8"
+```
+
+The correct way should be -
+
+```yaml
+- name: Create EC2 instances
+    amazon.aws.ec2_instance:
+      name: "{{ item.name }}"
+      key_name: "demo-key"
+      instance_type: t2.micro
+      security_group: default
+      region: us-east-1
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"   
+      network:
+        assign_public_ip: true
+      image_id: "{{ item.image }}"
+      tags:
+        environment: "{{ item.name }}"
+    loop:
+      - { image: "ami-0e1d06225679bc1c5", name: "manage-node-1" }
+      - { image: "ami-0f58b397bc5c1f2e8", name: "manage-node-2" }
+      - { image: "ami-0f58b397bc5c1f2e8", name: "manage-node-3" }
+```
+This time it would create 3 ec2 instances.
+
