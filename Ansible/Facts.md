@@ -120,3 +120,15 @@ The correct way should be -
 ```
 This time it would create 3 ec2 instances.
 
+33. Use `ignore_errors: true` when you want to continue the playbook execution even when there are errors.
+34. Use conditions as lists with **when** to make them behave like AND logic.
+
+```yaml
+when:
+  - print_ansible_facts
+  - check
+```
+
+35. When ansible playbook runs it tries to run the **Gathering Facts** stage where it fecthes a lot of information about the target machines or the managed nodes. You can check them by printing the the variable named **ansible_facts**. You can also set condition based on the information fetched.
+35. By default **gather_facts** is set to true. To stop anible from fething these facts or running the gathering facts stage, use `gather_facts: no`
+36. 
