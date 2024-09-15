@@ -130,5 +130,5 @@ when:
 ```
 
 35. When ansible playbook runs it tries to run the **Gathering Facts** stage where it fecthes a lot of information about the target machines or the managed nodes. You can check them by printing the the variable named **ansible_facts**. You can also set condition based on the information fetched.
-35. By default **gather_facts** is set to true. To stop anible from fething these facts or running the gathering facts stage, use `gather_facts: no`
+35. By default **gather_facts** is set to true. To stop anible from fething these facts or running the gathering facts stage, use `gather_facts: no` or `gather_facts: false`
 36. 
