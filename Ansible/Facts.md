@@ -120,7 +120,8 @@ The correct way should be -
 ```
 This time it would create 3 ec2 instances.
 
-33. Use `ignore_errors: true` when you want to continue the playbook execution even when there are errors.
+33. Use `ignore_errors: true` on tasks when you want to continue the playbook execution even when there are errors for a particlar host/hosts where error has occured. \
+For example, let there be 3 managed nodes and asnible has to run 3 tasks on each of them. If first task fails on first managed node, then by default ansible won't run the remaining tasks on that node. But, ansible will run the other tasks on the other managed nodes. Errors can be ignored at playbook or task levels.
 34. Use conditions as lists with **when** to make them behave like AND logic.
 
 ```yaml
@@ -131,4 +132,6 @@ when:
 
 35. When ansible playbook runs it tries to run the **Gathering Facts** stage where it fecthes a lot of information about the target machines or the managed nodes. You can check them by printing the the variable named **ansible_facts**. You can also set condition based on the information fetched.
 35. By default **gather_facts** is set to true. To stop anible from fething these facts or running the gathering facts stage, use `gather_facts: no` or `gather_facts: false`
-36. 
+36. `register: output` can be used to store the output of an ansible tasks/command. It would have various options we can play around and set some conditions on.
+37. **failed_when** can be used to define failures. Say, the presence of a certain file is not desired, it can be marked as a failing condition. **failed_when** can be used with multiline conditions and a combination of **or** & **and** logics with the `^` operator an braces to separate out the conditions.
+38.
