@@ -9,4 +9,4 @@
 7. If we import a module or any function from the module, it will execute all the code inside sample module, including function definiations. Even if you are importing specific functions, you are not saving any resources as the entire module gets executed when it is imported.
 8. `sum([x**2 for x in range(1000000)])` will actually create all the 1000000 values and then add them. It will consume a lot of reosurces. Hence, use generators where the values are not created all at once, but they are generated one at a time when required: `sum(x**2 for x in range(1000000))`
 9. `id()` would give the memory address of the python object, function, variables etc. You can use `inspect` module to get information about the python members.
-10. 
+10. Behind all higher level operations on a class, there would be a lower level dunder/magic method that implements that operation.
