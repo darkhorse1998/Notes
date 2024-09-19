@@ -36,5 +36,17 @@ import datetime
 print(inspect.getsource(datetime))
 ```
 
-However, it would not allow you to check the source code of buily-in classes like list.
+## Multithreading vs Multiprocessing in Python
+
+Thread: Smallest unit of processing that can be scheduled by an operating system. In Python, threads are used to run multiple operations concurrently within the same process space. They are particularly useful for I/O-bound applications, where the program often waits for external events and performs less computation.
+
+Process: Instance of a program that can execute independently from other processes. Processes have their own memory space and are managed by the operating system. They are suitable for CPU-bound tasks that require heavy computation and little I/O.
+
+## Concurrency vs Parallelism
+
+Concurrency is a condition wherein two or more tasks can be initiated and completed in overlapping periods on a single processor and core. Parallelism is a condition wherein multiple tasks or distributed parts of a task run independently and simultaneously on multiple processors. So, parallelism isn't possible on machines with a single processor and a single core.
+
+Let's take an example of a barber shop, with 2 chairs and queues of customers for both those chairs. \
+If a single barber switches between the 2 chairs and cuts hair, it would be concurrency. \
+If 2 barbers attend to 2 chairs at the same time and cut hair, it would be parallelism.
 
