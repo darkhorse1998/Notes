@@ -17,4 +17,10 @@
 15. Race condition can be avoided by using Locks, R-Locks, Semaphores.
 16. Lock is a class of threading module. It has `acquire()` & `release()` methods through which we can avoid the race condition in the critical conditions.
 17. RLock is an upgraded form of Lock class that can help in acquiring and releasing multiple times together. Also it provides information about the lock, including the thread ID which locked it, how many times etc. RLock helps to avoid issues in case due to some abstraction we are not able to see locks already present, and we end up making another lock.
-18. 
+18. `with open("file.txt", "r") as file:` is actually a context manager which ensures that the the file closes even if there are any exception when the file is open. It does that through the `__exit__()` dunder method.
+19. Python is dynamically typed language. The type of objects or variables are decided at runtime. Hence, you don't need to declare variable type beforehand. Also, a variable storing integer can later be assigned to store strings.
+20. `list.pop()` removes last element of list. `list.insert(<index>,<value>)` can be used to insert elements at certain index, which is O(n) operation.
+21. `list.sort(key=lamda x: len(x))` will help sort a list based on length of the elements.
+22. Strings are immutable. For example, you cannot change the second letter of a string. You can concatenate, but that will create a new string. You can re-assign the variable to a new string, but that is not changing the string.
+23. You can get the ASCII value of a character by `ord(<character>)`
+24. 
