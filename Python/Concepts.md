@@ -50,3 +50,16 @@ Let's take an example of a barber shop, with 2 chairs and queues of customers fo
 If a single barber switches between the 2 chairs and cuts hair, it would be concurrency. \
 If 2 barbers attend to 2 chairs at the same time and cut hair, it would be parallelism.
 
+## Pilars in OOP
+
+### Abstraction
+
+Abstraction is the concept of hiding all the implementation of your class away from anything outside of the class. \
+Example: When we call a method of a class, we don't care about how it is working. Say, `list.append()`
+
+Inheritance: Inheritance is the mechanism for creating a child class that can inherit behavior and properties from a parent(derived) class.
+
+Encapsulation: Encapsulation is the method of keeping all the state, variables, and methods private unless declared to be public.
+
+Polymorphism: Polymorphism is a way of interfacing with objects and receiving different forms or results. \
+Example: Function overriding, when we inherit and overwrite the function in a child class.
