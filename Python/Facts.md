@@ -26,3 +26,15 @@
 24. Decorators can be used to modify the bevaiour of a fucntion without changing any code. This can be useful in cases where we want to test or validate a function without changing aything on it. It can also help in capturing the time it took to run a particular function.
 25. Generator functions are a special kind of function that return a lazy iterator. These are objects that you can loop over like a list. However, unlike lists, lazy iterators do not store all their contents in memory at a time.
 26. Generators can help resolve memory issues we might encounter with large numbers of infinite sequences.
+27. `with open("file.txt", "r") as file:` is actually a context manager which ensures that the the file closes even if there are any exception when the file is open. It does that through the `__exit__()` dunder method.
+28. Python is dynamically typed language. The type of objects or variables are decided at runtime. Hence, you don't need to declare variable type beforehand. Also, a variable storing integer can later be assigned to store strings.
+29. `list.pop()` removes last element of list. `list.insert(<index>,<value>)` can be used to insert elements at certain index, which is O(n) operation.
+30. `list.sort(key=lamda x: len(x))` will help sort a list based on length of the elements.
+31. Strings are immutable. For example, you cannot change the second letter of a string. You can concatenate, but that will create a new string. You can re-assign the variable to a new string, but that is not changing the string.
+32. You can get the ASCII value of a character by `ord(<character>)`
+33. `*args` can accept any number positional arguements and stores them in a tuple. `**kwargs` can accept any number of keyword arguments and sore it in a dictionary.
+34. Positional arguments should be defined before keyword arguments.
+35. Exponential operator follows right to left associativity evaluation. `2**3**2` would result in 512 and not 64.
+36. `<str>[start:stop:step]` depending on step, direction is decided. If stop value is not found then the output would be blank. \
+For example, let `name` store the value of "shantanu". If we use `name[2,8,-2]`, python would start at character "a" on index 2 and go towards left side because step is negative. It won't find stop index 8 (or 7, as 8 is not inclusive) and hence return blank reponse.
+37. Dictionary keys cannot be duplicate. If there are duplicates, the latest value will be considered. If you do a `len` on a dictionary with 3 elements where 2 elements have same keys then the length would be shown as 2 and not 3.
