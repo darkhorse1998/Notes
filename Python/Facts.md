@@ -17,4 +17,12 @@
 15. Race condition can be avoided by using Locks, R-Locks, Semaphores.
 16. Lock is a class of threading module. It has `acquire()` & `release()` methods through which we can avoid the race condition in the critical conditions.
 17. RLock is an upgraded form of Lock class that can help in acquiring and releasing multiple times together. Also it provides information about the lock, including the thread ID which locked it, how many times etc. RLock helps to avoid issues in case due to some abstraction we are not able to see locks already present, and we end up making another lock.
-18. 
+18. Semaphore can be used to define the maximum number of threads that can executed at a time. If no values are set on the number of threads, default value is 1. It has built in RLock. But, be careful about how many times you acquire and release; it should be equal. With Semaphore, you can't avoid race condition unless you set it to default values.
+19. To avoid inconsistencies with unequal acquire and release counts, you can use `BoundedSemaphore` instead of Semaphore.
+20. When exception occurs in one of the threads, other threads are left undisturbed. In case of main thread, when an exception occurs, the `sys.excepthook` is called but for the created threads, during an exception, `threading.excepthook` is called and if there are any exceptions in the `threading.excepthook` then `sys.excepthook` is called.
+21. We can override the `threading.excepthook` from our end.
+22. A thread is a flow of execution and every program has atleast 1 thread calld Main Thread.
+23. Thread lifecycle: new thread -> running thread (blocked) -> terminated thread (normlly or with exceptions)
+24. Decorators can be used to modify the bevaiour of a fucntion without changing any code. This can be useful in cases where we want to test or validate a function without changing aything on it. It can also help in capturing the time it took to run a particular function.
+25. Generator functions are a special kind of function that return a lazy iterator. These are objects that you can loop over like a list. However, unlike lists, lazy iterators do not store all their contents in memory at a time.
+26. Generators can help resolve memory issues we might encounter with large numbers of infinite sequences.
