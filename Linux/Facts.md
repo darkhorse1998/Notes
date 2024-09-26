@@ -94,4 +94,19 @@ Examples:
 `egrep -r 'c[au]t' /etc/` -> it can be either cat or cut. [] provides a range, like [a-z], [0-9], [abc710] \
 `egrep -r 'http[^s]' /etc/` -> negated range, it tells not to look for https \
 `egrep -r '/[^a-z]' /etc/` -> no lowercase after / \
-32. 
+32. `tar` can be used to archive files (combining multiple files into a single file). Use `tar -tf file.tar` or `tar tf file.tar` to see the files inside the achived structure, also known as tarball. Tar archive also stores the files permissions of the respective files. \
+Exanples: \
+`tar --create --file archive.tar file1` or `tar cf archive.tar file1` -> creates a tarball and adds file1 in it \
+`tar --append --file archive.tar file2` or `tar rf archive.tar file2` -> appends new files to the tarball \
+`tar --extract --file archive.tar` or `tar xf archive.tar` -> will extract the files in the tarball in the current directory \
+`tar --extract --file archive.tar --directory /tmp/` or `tar xf archive.tar -C /tmp/` -> will extract the files in the tarball in the tmp directory
+33. Compression on linux can be done by gzip, bzip2 or xz. They will compress the files and automatically delete the original files afterwards. Decompression can be done using gunzip, bunzip, unxz. It can also be done using the `--decompress` attribute of the gzip, bzip2 and xz. You can check the files compressed by `gzip --list file1`. These tools like gzip and others can be used on single files. Hence thy can be used together with tar.
+34. You can also retain the original files post compression/decompression through the `--keep` attribute like `gzip --keep file1` or `xz -k file1`
+35. `zip archive file1` or `zip archive.zip file1` can also be used to compress. `zip -r archive.zip directory/` can zip an entire directory. To unzip use `unzip archive.zip`
+36. tar can be used to archive and compress together. \
+Examples:
+`tar --create --gzip -file archive.tar.gz file1` or `tar czf archive.tar.gz file1` \
+`tar --create --bzip2 -file archive.tar.gz file1` or `tar cjf archive.tar.gz file1` \
+`tar --create --xz -file archive.tar.gz file1` or `tar cJf archive.tar.gz file1` \
+`tar --create --autocompress --file archive.tar.gz file1` or `tar caf archive.tar.gz file1` -> tar will automatically detect to use gzip \
+`tar --extract --file archive.tar.gz` or `tar xf archive.tar.gz`
