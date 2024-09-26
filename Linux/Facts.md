@@ -31,3 +31,67 @@ Exact permissions: `chmod u=w file1`, `chmod g=rw file1`, `chmod g= file1`
 Combination: `chmod u+rx,g=w,o= file`
 Octal values: `chmod 640 file` \
 r (4), w(2), x(1) or other way of looking into it is by set and unset bits. If the permission for user is rx- -> r is set, w is set, x is not set -> Binary 110 -> Decimal value 6
+18. When SUID is set for a file, whenever the file is executed, it will be executed as the owner (user) of the file, irrespective of who executes it. SUID digit is 4. If execute permission is already there then it will apear as a lowercase 's', else an uppercase 'S'. \
+Example: `chmod 4764 file`
+19. When SGID is set for a file, whenever the file is executed, it will be executed as the group, irrespective of who executes it. SGID digit is 2. If execute permission is already there then it will apear as a lowercase 's', else an uppercase 'S'. \
+Example: `chmod 2765 file`
+20. To see files with SUID or SGID set, run `find <path> -perm /<4/2>000` \
+Example: `find . -perm /4000` or `find . -perm /2000`
+21. You can set both SUID (4) and SGID (4) on a file by `chmod 6664 file`.
+22. To find files set with SUID or SGID or both, run `find <path> -perm /6000`
+23. Sticky bit is used to ensure that files inside a directory can be removed only by the user (owner) no mater what permissions have been set. Sticky bit digit is 1. \
+Example: `chmod 1777 myDir` or `chmod +t myDir`
+24. `find` can be used to find files with certain serach parameters. If not directory is specified it will look in the current directory. \
+Examples: \
+`find /usr/share -name file.jpg` \
+`find -iname file` -> ignores case \
+`find -name "i*"` -> searches files starting with 'i' \
+`find -mmin 5` -> will list files modified at the 5th minute before the current time \
+`find -mmin -5` -> will list all files modified within the last 5 minutes \
+`find -mmin +5` -> will list all files modified in the infinite past till the last 5 minutes \
+`find -mtime 0` -> will list files modified in the last 24 hours \
+`find -mtime 1` -> will list files modified between last 24 to 48 hours \
+`find -ctime 0` -> will list files where meta data like file permissions have been modified in the last 24 hours \
+`find -size 512k` -> will list files with size 512 KB (c: bytes, k: kilobytes, M: megabytes, G: gigabytes) \
+`find -size +512k` -> will list files with size greater than 512 KB \
+`find -size -512k` -> will list files with size lesser than 512 KB \
+`find -name "f*" -size +512k` -> AND logic \
+`find -name "f*" -o -size +512k` -> OR logic \
+`find -not -name "f*"` or `find \! -name "f*"` -> list all files whose name do not begin with 'f' \
+`find -perm 664` or `find -perm u=rw,g=rw,o=r` -> list files with mentioned permissions \
+`find -perm -664` or `find -perm -u=rw,g=rw,o=r` -> list files which have atleast these permissions \
+`find -perm /664` or `find -perm /u=rw,g=rw,o=r` -> list files which have any of these permissions \
+`find -perm -u=rw,g=rw,o=r` \
+`find -type f` -> finds files \
+`find -type d` -> finds directories
+25. `tac` command is used to print out a file in reverse order (bottom to top)
+26. `sed` is used to modify contents in a file. It is a stream editor. Query should b wrapped in quotes. In case / cannot be used, use ~\
+Examples: \
+`sed 's/canda/canada/gi' file.txt` -> s means substitute (search & replace). g is used to do the substirution on all occurances. This would be just a preview and not actually make the changes. i would make it ignore case \
+`sed -i 's/canda/canada/g' file.txt` -> -i (--in-place) ensures the changes are actually made to the file. \
+27. `cut` is used to extract parts of the file. \
+Examples: \
+`cut -d ' ' -f 1 file.txt` -> extracts the 1st element in the elements separated by space in all the lines
+27. `uniq file.txt` helps to remove **adjacent** duplicate entries from the file. To make it remove all duplicate elements, first sort the file using `sort file.txt` and then run the `uniq file.txt` command or just do it like this `sort file.txt | uniq`
+28. `diff file1 file2` to get the differences. `diff -c file1 file2` gives contex of the lines around the result lines. `diff -y file1 file2` or `sdiff file1 file2` is used to compare the files side by side and differences are marked by '|'
+29. Pagers can help in viewing an navigation of files. `less` and `more` are such examples. "/" can be used to search and --i to ignore case. Press enter for next and shift+enter for previous.
+30. `grep -irvwo 'lib' /etc/` -> will ignore case (i), look recurssively (r), inverse the search or not command (v), match only words lib and not library (w, --words), output only lib and no context lines (o, --only-matching) \
+Examples: \
+`grep '^sam' file.txt` -> finds entries that start with 'sam' \
+`grep 'sam$' file.txt` -> finds entries that end with 'sam' \
+`grep 'c.t' /home/bob/` -> dot (.) would match with any character like cat, cut \
+`grep 'c*t' /home/bob/` -> * will match to 0 or any number of characters like caught, colt \
+`grep '0\+' /etc` -> 0 should be there at least once
+31. Extended grep can help avoid the escape characters we use like \+, \. etc. \
+Examples:
+`grep -Er '0+' /etc/` or `egrep -r '0+' /etc/` \
+`egrep -r '0{3}' /etc/` -> 3 zeros
+`egrep -r '0{3,}' /etc/` -> at least 3 zeros \
+`egrep -r '0{,3}' /etc/` -> at most 3 zeroes \
+`egrep -r '0{1,3}' /etc/` -> min 1, max 3 zeroes \
+`egrep -r 'cat?' /etc/` -> ? makes last character optional \
+`egrep -r 'cat|dog' /etc/` -> Or logic \
+`egrep -r 'c[au]t' /etc/` -> it can be either cat or cut. [] provides a range, like [a-z], [0-9], [abc710] \
+`egrep -r 'http[^s]' /etc/` -> negated range, it tells not to look for https \
+`egrep -r '/[^a-z]' /etc/` -> no lowercase after / \
+32. 
