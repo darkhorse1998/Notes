@@ -110,3 +110,9 @@ Examples:
 `tar --create --xz -file archive.tar.gz file1` or `tar cJf archive.tar.gz file1` \
 `tar --create --autocompress --file archive.tar.gz file1` or `tar caf archive.tar.gz file1` -> tar will automatically detect to use gzip \
 `tar --extract --file archive.tar.gz` or `tar xf archive.tar.gz`
+37. Use `systemctl reboot` to restart the machine and `systemctl poweroff` to shutdown. Use them with `sudo` in case the user is not the root user. Use `--force` or `--force --force` flag in case you want to force it to reboot or power off.
+38. Use `sudo shutdown 02:00` to schedule shutdown at a given time. It is 24 hour format (00:00 to 23:59). To shut down after 10 mins, use `sudo shutdown +10`. To schedule a reboot add `-r` flag like `sudo shutdown -r 02:00`
+39. You can set a wall message notifying users when system might reboot or shutdown by `sudo shutdown -r 02:00 'Scheduled Restart at 02:00'`
+40. `#!/bin/bash` should be the first line in a script. It is a shabang which tells the system which interpreter to use to execute the commands written inside the script.
+41. After creating the script, make it executable. You can use `chmod +x script.sh` to make it executable for every user.
+42. 
