@@ -134,4 +134,6 @@ when:
 35. By default **gather_facts** is set to true. To stop anible from fething these facts or running the gathering facts stage, use `gather_facts: no` or `gather_facts: false`
 36. `register: output` can be used to store the output of an ansible tasks/command. It would have various options we can play around and set some conditions on.
 37. **failed_when** can be used to define failures. Say, the presence of a certain file is not desired, it can be marked as a failing condition. **failed_when** can be used with multiline conditions and a combination of **or** & **and** logics with the `^` operator an braces to separate out the conditions.
-38.
+38. Saving ansible vault files to _group_vars/all_ will allow all hosts to access it.
+39. Use `ansible-vault encrypt <file>` to encrypt an existing file. Use `ansible-edit` to edit already encrypted vault files.
+40. Password files can be uploaded to secret management tools on clouds and access can be restricted through IAM.
