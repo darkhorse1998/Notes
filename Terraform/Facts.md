@@ -24,7 +24,7 @@ locals {
 ![image](https://github.com/user-attachments/assets/80034d5b-6e60-4ba9-9a41-7c7f6727c6c2)
 
 4. The order of precedence for variable sources for terraform, with first being the least:
-  i. Environment variables, which start with **TF_VAR_** (Example: `export TF_VAR_bucket_name=”mehmet-fifth-bucket”`)
+  i. Environment variables, which start with **TF_VAR_** (Example: `export TF_VAR_bucket_name="bucket"`)
   ii. Default variables, which can be declared in the variables.tf
   iii. The terraform.tfvars file, if present
   iv. The terraform.tfvars.json file, if present.

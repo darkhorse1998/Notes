@@ -88,8 +88,6 @@ For example, the following task will create only 2 ec2 instances and not 3, as f
       network:
         assign_public_ip: true
       image_id: "{{ item }}"
-      tags:
-        environment: "{{ item.name }}"
     loop:
       - image: "ami-0e1d06225679bc1c5"
       - image: "ami-0f58b397bc5c1f2e8"
@@ -111,8 +109,6 @@ The correct way should be -
       network:
         assign_public_ip: true
       image_id: "{{ item.image }}"
-      tags:
-        environment: "{{ item.name }}"
     loop:
       - { image: "ami-0e1d06225679bc1c5", name: "manage-node-1" }
       - { image: "ami-0f58b397bc5c1f2e8", name: "manage-node-2" }
