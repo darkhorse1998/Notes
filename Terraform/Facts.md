@@ -41,4 +41,16 @@ locals {
 10. `terraform plan` shows the changes and `terraform apply` applies the changes.
 11. State file stores the current configurations. Terraform is going to deploy the changes according to the **desired state** as mentioned in the configuration files.
 12. **lock file** prevents changes to the providers. If any changes are required then either delete the lock file and do `terraform init` again or do an upgrade by `terraform init -upgrade` to get the new plugins accordingly.
-13. 
+13. `terraform plan` and `terraform apply` in the background does a refresh.
+14. Directly doing `terrafom refresh` is a bad idea as it will update the state file without any confirmation prompt. If there is any change in the credentials or region of the provider, terraform will assume all the resources are deleted and it will lead to a wrong update on the state file. This is the reason it also deprecated.
+15. Instead of `terraform refresh`, we should use `terraform plan -refresh-only` or `terraform apply -refresh-only`. Before commiting the changes to the state file, there will be a confirmation prompt and the list of changes can be seen.
+16. Terraform has planning modes:
+    i. Destroy: It will destroy all remote objects that currently exists using `-destroy` flag.
+    ii. Refresh-only: It will update the terraform state with that of the current remote state using `-refresh-only` flag.
+17. Terraform has planning options:
+    i. `-refresh=false`: Disables the default behavior of synchronizing the Terraform state with remote objects before checking for configuration changes.
+    ii. `-replace=<address/object>`: Instructs Terraform to plan to replace the resource instance with the given address. This is basically a forced creation.
+    iii. `-target=<address/object>`: Instructs Terraform to focus its planning efforts only on resource instances which match the given address and on any objects that those instances depend on.
+18. Resources can be cross-referenced using address from resource type, local name and attribute. \
+Example: `public_ip = [aws_eip.myeip.public_ip]`
+19. 
