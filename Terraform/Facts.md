@@ -53,4 +53,6 @@ locals {
     iii. `-target=<address/object>`: Instructs Terraform to focus its planning efforts only on resource instances which match the given address and on any objects that those instances depend on.
 18. Resources can be cross-referenced using address from resource type, local name and attribute. \
 Example: `public_ip = [aws_eip.myeip.public_ip]`
-19. 
+19. `terraform plan -refresh-only` will fetch the latest remote state and showcase the changes. It won't change the state file.
+20. `terraform apply -refresh-only` if approved, will update the state file with the latest remote state. It won't make any infrastructure changes.
+21. 
