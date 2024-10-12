@@ -55,4 +55,28 @@ locals {
 Example: `public_ip = [aws_eip.myeip.public_ip]`
 19. `terraform plan -refresh-only` will fetch the latest remote state and showcase the changes. It won't change the state file.
 20. `terraform apply -refresh-only` if approved, will update the state file with the latest remote state. It won't make any infrastructure changes.
-21. 
+21. Place variables in _terraform.tfvars_ file.
+22. `count` helps in creating copies of the resources. `count.index` gets the loop index. It can also be used for conditional creation of resources. \
+Example: `count = var.env == "dev" ? 1:0`
+23. Terraform doesn't support user-defined functions.
+24. `terraform console` opens up terraform console to test and run terraform commands.
+25. Data sources allow data to be fetched or computed for using in terraform. Data sources allow Terraform to use information defined outside of Terraform \
+Example: 
+```tf
+data "aws_ami" "web" {
+  most_recent = true
+
+  owners = ["self"] # self for self created AMIs
+  tags = {
+    Name   = "web-server"
+    Tested = "true"
+  }
+}
+
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.web.id
+  instance_type = "t1.micro"
+}
+
+```
+26. 
