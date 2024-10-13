@@ -79,4 +79,8 @@ resource "aws_instance" "web" {
 }
 
 ```
-26. 
+26. Terraform log level can be changed through `TF_LOG` environment variable and possible options are TRACE, DEBUG, INFO, WARN, ERROR
+27. Setting `TF_LOG_PATH` to a file path will store the logs in that file and won't print out the logs.
+28. `terraform fmt` takes care of formatting of the terraform files in the same directory.
+29. `terraform validate` checks and validates terraform files in the directory. These include checks for unsupported fields, undeclared variables etc.
+30. `terraform plan` already does the validation.
