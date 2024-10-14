@@ -86,3 +86,21 @@ resource "aws_instance" "web" {
 30. `terraform plan` already does the validation.
 31. Terraform files (.tf or .tf.json) are loaded in alphabetical order.
 32. `terraform plan -out <file>` can be used to store the terraform plan and `terraform apply <file>` can be used to execute terraform with the plan file.
+33. Dynamic blocks can be used to dynamically construct repeatable nested blocks. They are supported inside data, resources, provider, provisioner. \
+Example:
+```tf
+locals {
+  inbound_ports = [80, 443]
+}
+
+dynamic "ingress" {
+  for_each = local.inbound_ports
+  content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = [ "0.0.0.0/0" ]
+  }
+}
+```
+34. 
