@@ -49,7 +49,7 @@ locals {
     ii. Refresh-only: It will update the terraform state with that of the current remote state using `-refresh-only` flag.
 17. Terraform has planning options:
     i. `-refresh=false`: Disables the default behavior of synchronizing the Terraform state with remote objects before checking for configuration changes.
-    ii. `-replace=<address/object>`: Instructs Terraform to plan to replace the resource instance with the given address. This is basically a forced creation.
+    ii. `-replace=<address/object>`: Instructs Terraform to plan to replace the resource instance with the given address. This is basically a forced deletion and creation.
     iii. `-target=<address/object>`: Instructs Terraform to focus its planning efforts only on resource instances which match the given address and on any objects that those instances depend on.
 18. Resources can be cross-referenced using address from resource type, local name and attribute. \
 Example: `public_ip = [aws_eip.myeip.public_ip]`
@@ -103,4 +103,8 @@ dynamic "ingress" {
   }
 }
 ```
-34. 
+In the above example, ingress acts as a default iterator.
+34. `terraform taint` was there in terraform version 0.15.2 and earlier. It used to do something similar to `terraform apply -replace=<ADDRESS>`
+35. Splat (*) will get list of all attribute values. \
+Example: `value = aws_iam_user.<name>[*].arn` will give the arn for all users.
+36. `terraform graph` gets a visual representation of configurations or execution plan in DOT format, which can be converted to image.
