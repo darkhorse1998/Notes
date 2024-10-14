@@ -84,3 +84,5 @@ resource "aws_instance" "web" {
 28. `terraform fmt` takes care of formatting of the terraform files in the same directory.
 29. `terraform validate` checks and validates terraform files in the directory. These include checks for unsupported fields, undeclared variables etc.
 30. `terraform plan` already does the validation.
+31. Terraform files (.tf or .tf.json) are loaded in alphabetical order.
+32. `terraform plan -out <file>` can be used to store the terraform plan and `terraform apply <file>` can be used to execute terraform with the plan file.
