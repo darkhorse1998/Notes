@@ -108,3 +108,8 @@ In the above example, ingress acts as a default iterator.
 35. Splat (*) will get list of all attribute values. \
 Example: `value = aws_iam_user.<name>[*].arn` will give the arn for all users.
 36. `terraform graph` gets a visual representation of configurations or execution plan in DOT format, which can be converted to image.
+37. `terraform output` can be used to extract value of an output variable from the state file.
+38. For larger infrastructure, `terraform plan` will make a lot of API calls to get refresh the state. Hence, you can either run `terraform plan -refresh=false` or keep the configuration files in separate flders so that terraform doesn't refresh all at once.
+39. There is another way for the above. Terraform target can be specified to refresh specific resources.
+40. `zipmap` function of terraform creates a map from a list of keys ad list of values. Example: [a,b] and [1,2] to {a=1,b=2}
+41. Comments in terraform by # (single line), // (single line), /* */ (multi line)
