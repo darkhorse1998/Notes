@@ -113,3 +113,5 @@ Example: `value = aws_iam_user.<name>[*].arn` will give the arn for all users.
 39. There is another way for the above. Terraform target can be specified to refresh specific resources.
 40. `zipmap` function of terraform creates a map from a list of keys ad list of values. Example: [a,b] and [1,2] to {a=1,b=2}
 41. Comments in terraform by # (single line), // (single line), /* */ (multi line)
+42. Meta arguments allow customized behavior on per resource basis like depends_on, count, for_each, lifecycle, provider.
+43. 
