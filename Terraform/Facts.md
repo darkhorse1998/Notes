@@ -143,3 +143,4 @@ module <module-name> {
   ...
 }
 ```
+47. We can override the variables declared at the module level by providing our own variables and values.
