@@ -121,3 +121,18 @@ Example: `value = aws_iam_user.<name>[*].arn` will give the arn for all users.
     d. ignore_changes: ignores the changes mentioned, say tags if changed it will ignore it, eg. `ignore_changes = [tags]`
   ii. `count`: loop used for resources where fields are almost identical
   iii. `for_each`: loop used for resources where fields are distinct and needs customized names
+43. If the order changes with variables associated with `count`, then it would lead to issues with the resources. Example, if the count is applied on a list [a,b,c] and it gets changed to [z,a,b,c], it will re-create the 3 existing resources due to change in order.
+44. `toset()` fucntion helps to convert objects into set, which are unordered but unique. Example, `toset(['a','b','c','a'])` -> (['a','b','c']), may not be in that order but unique
+45. In `for_each` resource addresses are stored as elements of a map. Example:
+```tf
+resource "azurerm_resource_group" "rg" {
+  for_each = tomap({
+    a_group       = "eastus"
+    b_group       = "westus2"
+  })
+  name     = each.key # a_group, b_group
+  location = each.value # eastus, westus2
+}
+
+```
+46. 
