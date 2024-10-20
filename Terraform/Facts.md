@@ -104,6 +104,7 @@ dynamic "ingress" {
 }
 ```
 In the above example, ingress acts as a default iterator.
+
 34. `terraform taint` was there in terraform version 0.15.2 and earlier. It used to do something similar to `terraform apply -replace=<ADDRESS>`
 35. Splat (*) will get list of all attribute values. \
 Example: `value = aws_iam_user.<name>[*].arn` will give the arn for all users.
