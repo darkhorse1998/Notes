@@ -114,7 +114,7 @@ Example: `value = aws_iam_user.<name>[*].arn` will give the arn for all users.
 39. There is another way for the above. Terraform target can be specified to refresh specific resources.
 40. `zipmap` function of terraform creates a map from a list of keys ad list of values. Example: [a,b] and [1,2] to {a=1,b=2}
 41. Comments in terraform by # (single line), // (single line), /* */ (multi line)
-42. Meta arguments allow customized behavior on per resource basis like depends_on, count, for_each, lifecycle, provider. Examples: \
+42. Meta arguments allow customized behavior on per resource basis like depends_on, count, for_each, lifecycle, provider. Examples:
   - `lifecycle`:
     * create_before_destroy: first new replacement is created and then existing is deleted
     * prevent_destroy: cannot destroy using `destroy` command, useful for DBs
@@ -136,4 +136,10 @@ resource "azurerm_resource_group" "rg" {
 }
 
 ```
-46. 
+46. DRY -> Don't Repeat Yourself. This is the concept for modules in terraform, where a single skeleton can be re-used. It can be a centralized source or shared library type. To install a module, do `terraform init` Example:
+```tf
+module <module-name> {
+  source = "<module-source>"
+  ...
+}
+```
