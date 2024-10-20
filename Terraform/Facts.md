@@ -115,13 +115,13 @@ Example: `value = aws_iam_user.<name>[*].arn` will give the arn for all users.
 40. `zipmap` function of terraform creates a map from a list of keys ad list of values. Example: [a,b] and [1,2] to {a=1,b=2}
 41. Comments in terraform by # (single line), // (single line), /* */ (multi line)
 42. Meta arguments allow customized behavior on per resource basis like depends_on, count, for_each, lifecycle, provider. Examples: \
-    i. `lifecycle`:
-        a. create_before_destroy: first new replacement is created and then existing is deleted
-        b. prevent_destroy: cannot destroy using `destroy` command, useful for DBs
-        c. replace_triggered_by: replaces esources if any of the referenced resources change
-        d. ignore_changes: ignores the changes mentioned, say tags if changed it will ignore it, eg. `ignore_changes = [tags]`
-    ii. `count`: loop used for resources where fields are almost identical
-    iii. `for_each`: loop used for resources where fields are distinct and needs customized names
+  - `lifecycle`:
+    * create_before_destroy: first new replacement is created and then existing is deleted
+    * prevent_destroy: cannot destroy using `destroy` command, useful for DBs
+    * replace_triggered_by: replaces esources if any of the referenced resources change
+    * ignore_changes: ignores the changes mentioned, say tags if changed it will ignore it, eg. `ignore_changes = [tags]`
+  - `count`: loop used for resources where fields are almost identical
+  - `for_each`: loop used for resources where fields are distinct and needs customized names
 43. If the order changes with variables associated with `count`, then it would lead to issues with the resources. Example, if the count is applied on a list [a,b,c] and it gets changed to [z,a,b,c], it will re-create the 3 existing resources due to change in order.
 44. `toset()` fucntion helps to convert objects into set, which are unordered but unique. Example, `toset(['a','b','c','a'])` -> (['a','b','c']), may not be in that order but unique
 45. In `for_each` resource addresses are stored as elements of a map. Example:
