@@ -161,4 +161,17 @@ resource "aws_instance" "demo_ec2" {
   instance_type = lookup(var.instance_type,terrafom.workspace)
 }
 ```
-51. 
+51. Terraform module sources can be local paths, TF registry, GitHub, BitBucket, HTTPS URL, S3 buckets etc.
+52. Backends are places where TF state is stored. By default it is local, but there are remote backends too, which can be stored in S3 Buckets, Azure Blob Storage etc. Example:
+```tf
+terrafom {
+  backend "s3" {
+    bucket = "bucket-name"
+    key    = "path/to/the/tfstate/file"
+    region = "region"
+  }
+}
+```
+53. Whenever write operations are being done on the tfstate file, terraform locks the state file, so that there are no parallel write operations on the tfstate file at the same time. It will show error acquiring the state lock.
+54. Locking is identified by _.terrafom.tfstate.lock.info_ file. Not all backends can support state file locking.
+55. Terraform locking can be undone by `terraform force-unlock`
