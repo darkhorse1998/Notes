@@ -145,4 +145,20 @@ module <module-name> {
 ```
 47. We can override the variables declared at the module level by providing our own variables and values.
 48. Terraform workspaces provide separate environment to work and assign different set of configuration.
-49. Terraform will maintain separate state files in terrafom.tfstate.d directory for each workspace.
+49. Terraform will maintain separate state files in _terrafom.tfstate.d_ directory for each workspace.
+50. If created workspaces are **dev** & **prod**, we can use them like -
+```tf
+variable "instance_type" {
+  type    = map
+  default = {
+    default = "t2.nano"
+    dev     = "t2.micro"
+    prod    = "t2.large"
+  }
+}
+resource "aws_instance" "demo_ec2" {
+  ...
+  instance_type = lookup(var.instance_type,terrafom.workspace)
+}
+```
+51. 
