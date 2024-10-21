@@ -144,3 +144,5 @@ module <module-name> {
 }
 ```
 47. We can override the variables declared at the module level by providing our own variables and values.
+48. Terraform workspaces provide separate environment to work and assign different set of configuration.
+49. Terraform will maintain separate state files in terrafom.tfstate.d directory for each workspace.
