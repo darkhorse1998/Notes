@@ -178,4 +178,7 @@ terrafom {
 56. Terraform state:
   - `terraform state list`: list resources within a terraform state
   - `terraform state show <resourceAddress>`: shows attributes of a single resource in a state
-  - 
+  - `terraform state pull`: pull the terrafor state file (even from remote backend)
+  - `terraform state rm <resourceAddress>`: remove items from state, stop managing it by terraform
+  - `terraform state mv <oldResourceAddress> <newResourceAddress>`: used to modify address of resources, without making terraform destry & re-create it. Example, `aws_iam_user.dev` -> `aws_iam_user.prod`, otherwise would destroy and re-create the user resource.
+  - `terraform state replace-provider <currentProvider> <newProvider>`: replaces the provider
