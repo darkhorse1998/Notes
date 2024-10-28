@@ -175,3 +175,7 @@ terrafom {
 53. Whenever write operations are being done on the tfstate file, terraform locks the state file, so that there are no parallel write operations on the tfstate file at the same time. It will show error acquiring the state lock.
 54. Locking is identified by _.terrafom.tfstate.lock.info_ file. Not all backends can support state file locking.
 55. Terraform locking can be undone by `terraform force-unlock`
+56. Terraform state:
+  - `terraform state list`: list resources within a terraform state
+  - `terraform state show <resourceAddress>`: shows attributes of a single resource in a state
+  - 
