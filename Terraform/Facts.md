@@ -204,4 +204,16 @@ resource "aws_security_group" "sg2" {
   name     = "prd-sg"
 }
 ```
-63. 
+63. Sensitive parameter in terraform allows to hide sensitive information and not expose them in CLI output or logs. Example:
+```tf
+variable "content" {
+  default   = "abc"
+  sensitive = true
+}
+```
+64. When the variable is sensitive, one will get an error if they try to output the variable value. But they can set the output to "sensitive" to avoid the error. This is done so that the terraform state file can have the value of the sensitive variable to be referred according to the use case.
+65. Sensitive parameter will not protect or redact information from the state file.
+66. Various providers like AWS will automatically consider the password argument for any database instance as sensitive and will redact it from the logs.
+67. HashiCorp vault allows to securely store secrets like tokens, passwords, certificates along with access management.
+68. HashiCorp vault also has the provision for dynamic secrets which can help developers get certain access keys like AWS access key, which are automatically rotated after certain intervals. This can be done through CLI or GUI. Integration with vault will make access management easier.
+69. HashiCorp vault can also be used to encrypt and decrypt data, hash generation, random geenration etc.
