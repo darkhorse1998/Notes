@@ -182,5 +182,26 @@ terrafom {
   - `terraform state rm <resourceAddress>`: remove items from state, stop managing it by terraform
   - `terraform state mv <oldResourceAddress> <newResourceAddress>`: used to modify address of resources, without making terraform destry & re-create it. Example, `aws_iam_user.dev` -> `aws_iam_user.prod`, otherwise would destroy and re-create the user resource.
   - `terraform state replace-provider <currentProvider> <newProvider>`: replaces the provider
-57. Storing state in remote source can act as an advantage for automating processes using remote state data source. For example, IPs created by network team can be fetched from the remote terraform state file and whitelisted by the security team.
-58. 
+57. Storing state in remote source can act as an advantage for automating processes using remote state data source. For example, IPs created by network team can be fetched from the remote terraform state file and whitelisted by the security team. It can be used by `data terraform_remote_state <local_name>` block.
+58. `terraform import` (in newer versions > 1.5) can automatically create terraform configuration files and state files for the resources that are imported.
+59. To import configurations of resources created manually or through other means, set the import block with the resource ID, and then run `terraform plan -generate-config-out=<filename>.tf` to store the configurations in that file. But state file is not created yet. To create the state file, run `terraform apply`
+60. Alias Meta-Argument can be used to have one default configuration for each provider and multiple alternate configurations that include an extra name or alias.
+61. Multiple provider blocks of same type is not allowed, but one can use alias to have multiple provider blocks.
+62. Once aliases are created, resources cn be associated with the respective providers. Example:
+```tf
+provider "aws" {
+  region = "ap-southeast-1"
+}
+provider "aws" {
+  alias  = "alt"
+  region = "ap-south-1"
+}
+resource "aws_security_group" "sg1" {
+  name = "dev-sg"
+}
+resource "aws_security_group" "sg2" {
+  provider = aws.alt
+  name     = "prd-sg"
+}
+```
+63. 
