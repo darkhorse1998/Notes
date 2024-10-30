@@ -182,3 +182,5 @@ terrafom {
   - `terraform state rm <resourceAddress>`: remove items from state, stop managing it by terraform
   - `terraform state mv <oldResourceAddress> <newResourceAddress>`: used to modify address of resources, without making terraform destry & re-create it. Example, `aws_iam_user.dev` -> `aws_iam_user.prod`, otherwise would destroy and re-create the user resource.
   - `terraform state replace-provider <currentProvider> <newProvider>`: replaces the provider
+57. Storing state in remote source can act as an advantage for automating processes using remote state data source. For example, IPs created by network team can be fetched from the remote terraform state file and whitelisted by the security team.
+58. 
