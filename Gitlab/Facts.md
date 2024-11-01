@@ -6,6 +6,8 @@
 4. To ensure that the jobs save the required data for other jobs, we define **artifacts**
 5. Gitlab would also check the pipeline if the format is proper of not.
 6. Gitlab architechture includes a Gitlab server and Gitlab runners. The server is basically used to manage all the things realated to he project and the configurations are saved in the database. The Gitlab server will deligate te work of running the pipelines to the Gitlab runners and store any artifacts if required. Runners can be scaled up or down. Runners can also be configured to use shared runners or cutomized runners according to the use-case.
+![image](https://github.com/user-attachments/assets/68542bc3-db2f-46d3-8850-e72e90470688)
+
 7. If not specified, then a job will automatically be assigned to **test** stage.
 8. Gitlab can be used as a SaaS hosted by Gitlab or it can also be used through self-managed hosted instance on-premise or on public cloud.
 9. To use a specific image for the runner, use the `image` attribute. Example:
