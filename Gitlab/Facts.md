@@ -31,4 +31,33 @@ job2:
     script:
         ...
 ```
-13. 
+13. To disable a job, add a dot (.) before the job name. Example:
+```yaml
+.job1:
+    script:
+        ...
+```
+14. Anchors can be used in YAML to inherit properties and re-use them. It can be named anything. Example:
+```yaml
+name: &anchor David
+upn: *anchor
+
+base: &base
+    city: a
+    country: b
+
+person1:
+    <<: *base # will insert city and country from base object
+    name: Jason
+```
+15. Gitlab has many pre-defined environment variables related to the project, pipelines etc. which can be found [here](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
+16. Pre-defined Gitlab variables can be used by `$<variable_name>`. Example: `echo $CI_COMMIT_AUTHOR`
+17. Pipelines can be scheduled through Pipeline Schedules cron settings.
+18. Gitlab can use caching to make the build process faster. We can specify cash at job level or at global level. Caches can be cleared using **Clear Runner Caches** button. Example:
+```yaml
+cache:
+    key: ${CI_COMMIT_REF_SLUG} #Gets the current branch
+    paths:
+        - node_modules/
+```
+19. 
