@@ -65,4 +65,5 @@ cache:
 21. Continuous delivery vs Continuous Deployment - \
 Continuous Delivery: It involves building, testing, and staging code changes, but a developer must manually decide when to deploy to production. This process can be beneficial when a company needs to frequently release changes to production, but still wants some human intervention.
 Continuous Deployment: Automatically releases code changes to production after they pass all stages of the production pipeline. This process can help accelerate the feedback loop with customers and reduce pressure on the development team.
-22. 
+22. Environments can be used in pipelines throught the environment parameter. In the Gitlab UI we can track about the deployments in each of the environments.
+23. 
