@@ -60,4 +60,9 @@ cache:
     paths:
         - node_modules/
 ```
-19. 
+19. Artifacts are used to pass data between stages/job. Caches are used as temporary storage for project dependencies.
+20. Environments in Gitlab allows us to control the Continuous Delivery/Continuous Deployment.
+21. Continuous delivery vs Continuous Deployment - \
+Continuous Delivery: It involves building, testing, and staging code changes, but a developer must manually decide when to deploy to production. This process can be beneficial when a company needs to frequently release changes to production, but still wants some human intervention.
+Continuous Deployment: Automatically releases code changes to production after they pass all stages of the production pipeline. This process can help accelerate the feedback loop with customers and reduce pressure on the development team.
+22. 
