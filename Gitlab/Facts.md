@@ -66,4 +66,22 @@ cache:
 Continuous Delivery: It involves building, testing, and staging code changes, but a developer must manually decide when to deploy to production. This process can be beneficial when a company needs to frequently release changes to production, but still wants some human intervention.
 Continuous Deployment: Automatically releases code changes to production after they pass all stages of the production pipeline. This process can help accelerate the feedback loop with customers and reduce pressure on the development team.
 22. Environments can be used in pipelines throught the environment parameter. In the Gitlab UI we can track about the deployments in each of the environments.
-23. 
+23. Variables can be declared in global or job level.
+24. Manual intevention can be injected in the pipelines by `when: manual` in the respective jobs. This can be useful when there is a need of manual intervention or approval before deployment. For example, production drops.
+25. In case, when there are jobs after manual intervention jobs, they might fail as they won't wait. We can resolve this by adding `allow_failure: false` to the job which has manual intervention.
+26. If you want the job to run only when it runs from a certain branch/branches, it can be done using `only`. Example:
+```yaml
+job1:
+    only:
+        - master
+    ...
+```
+27. To make a job run when a merge request is raised, we can use `only`. Example:
+```yaml
+job1:
+    only:
+        - merge_requests
+    ...
+```
+28. Branches can be protected by setting permissions for 'Allowed to push' to 'No one' for the main/master branch in Settings -> Repository -> Protected Branches
+29. 
