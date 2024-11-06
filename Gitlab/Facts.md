@@ -84,4 +84,11 @@ job1:
     ...
 ```
 28. Branches can be protected by setting permissions for 'Allowed to push' to 'No one' for the main/master branch in Settings -> Repository -> Protected Branches
-29. 
+29. You can create dynamic environments for each merge request to allow developers and QA to test the deployment on each merge request.
+30. Setting the variable `GIT_STRATEGY` to `none` will make sure that the job or the pipeline will not try to clone the repository (from whichever branch it is running on). Exmaple:
+```yaml
+job1:
+    variables:
+        GIT_STRATEGY: none
+```
+31.
