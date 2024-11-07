@@ -91,4 +91,4 @@ job1:
     variables:
         GIT_STRATEGY: none
 ```
-31.
+31. `before_script` can be declared at job/global level, and runs before the main script. `after_script` works in a similar manner and is executed after the main script, however it is different than 'before_script' as its commands are executed in a separate context and local working directory is set back to default.
