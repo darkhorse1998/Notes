@@ -92,3 +92,25 @@ job1:
         GIT_STRATEGY: none
 ```
 31. `before_script` can be declared at job/global level, and runs before the main script. `after_script` works in a similar manner and is executed after the main script, however it is different than 'before_script' as its commands are executed in a separate context and local working directory is set back to default.
+32. Environments can be stopped and cleaned up manually/dynamically. Example:
+```yaml
+deploy:
+    environment:
+        name: dev
+        url: abc.com
+        on_stop: stop environment
+    ...
+
+stop environment:
+    only:
+        - merge_requests
+    variables:
+        GIT_STRATEGY: none
+    when: manual
+    environment:
+        name: dev
+        action: stop
+    ...
+
+```
+33. 
