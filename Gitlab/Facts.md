@@ -113,4 +113,17 @@ stop environment:
     ...
 
 ```
-33. 
+33. Organizing variables in groups can help share those variables in other projects and set permissions accordingly.
+34. In case of AWS authentication, simply creating the variables in the Gitlab variables is enough as thy will be injected as environent variables. Variables defined in the UI are automatically exposed as environment variables within the job environment.
+35. Setting `when: always` under `artifacts` will ensure that the artifacts are saved and can be viewed even if the job fails. This is important in case of testing, where tests might fail but we would need the reports to understand what is wrong.
+36. Specifying `reports` in artifacts can be useful to publish tests as reports in the artifact page. Example, for junit tests \
+```yaml
+job1:
+    ...
+    artifacts:
+        when: always
+        paths:
+            ...
+        reports:
+            junit: ...
+```
