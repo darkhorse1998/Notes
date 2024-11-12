@@ -127,3 +127,4 @@ job1:
         reports:
             junit: ...
 ```
+37. Gitlab Pages can be used to host static pages like reports. This can be used to publish test results.
