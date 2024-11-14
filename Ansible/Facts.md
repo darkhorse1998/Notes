@@ -4,7 +4,7 @@
 2. Ansible is agentless. You don't require to install any agent on the managed nodes.
 3. Python should be present on on both control node & managed nodes.
 4. Passwordless Authentication helps to skip the repeated authentication and allow ansible to deploy without hurdles.
-5. All the managed nodes shhould be present in the **inventory.ini** file.
+5. All the managed nodes should be present in the **inventory.ini** file.
 6. To run the ansible adhoc commands you have to provide the inventory file. \
 Syntax: `ansible -i <inventory-file> -m <module> -a <arguement> <hosts>`
 Example: `ansible -i inventory.ini -m ping all`
