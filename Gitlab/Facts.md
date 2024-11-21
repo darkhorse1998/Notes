@@ -53,7 +53,7 @@ person1:
 15. Gitlab has many pre-defined environment variables related to the project, pipelines etc. which can be found [here](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
 16. Pre-defined Gitlab variables can be used by `$<variable_name>`. Example: `echo $CI_COMMIT_AUTHOR`
 17. Pipelines can be scheduled through Pipeline Schedules cron settings.
-18. Gitlab can use caching to make the build process faster. We can specify cash at job level or at global level. Caches can be cleared using **Clear Runner Caches** button. Example:
+18. Gitlab can use caching to make the build process faster. We can specify cache at job level or at global level. Caches can be cleared using **Clear Runner Caches** button. Example:
 ```yaml
 cache:
     key: ${CI_COMMIT_REF_SLUG} #Gets the current branch
@@ -65,7 +65,7 @@ cache:
 21. Continuous delivery vs Continuous Deployment - \
 Continuous Delivery: It involves building, testing, and staging code changes, but a developer must manually decide when to deploy to production. This process can be beneficial when a company needs to frequently release changes to production, but still wants some human intervention.
 Continuous Deployment: Automatically releases code changes to production after they pass all stages of the production pipeline. This process can help accelerate the feedback loop with customers and reduce pressure on the development team.
-22. Environments can be used in pipelines throught the environment parameter. In the Gitlab UI we can track about the deployments in each of the environments.
+22. Environments can be used in pipelines through the environment parameter. In the Gitlab UI we can track about the deployments in each of the environments.
 23. Variables can be declared in global or job level.
 24. Manual intevention can be injected in the pipelines by `when: manual` in the respective jobs. This can be useful when there is a need of manual intervention or approval before deployment. For example, production drops.
 25. In case, when there are jobs after manual intervention jobs, they might fail as they won't wait. We can resolve this by adding `allow_failure: false` to the job which has manual intervention.
